@@ -37,13 +37,14 @@ async def inventory_item(request: Request, item_id: int):
         result = await conn.fetch(
             """
             SELECT 
-                item_id, 
+                item_id,
+                date_received_into_inventory,
                 date_shipped_from_inventory,
-                SUM(quantity) as total_quantity_by_day
+                SUM(quantity) as total_quantity
             FROM inventory
-            WHERE item_id = $1 AND date_shipped_from_inventory IS NOT NULL
-            GROUP BY item_id, date_shipped_from_inventory
-            ORDER BY date_shipped_from_inventory DESC;
+            WHERE item_id = $1
+            GROUP BY item_id, date_received_into_inventory, date_shipped_from_inventory
+            ORDER BY COALESCE(date_received_into_inventory, date_shipped_from_inventory) DESC;
             """,
             item_id
         )

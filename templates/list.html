@@ -12,7 +12,14 @@
         <ul>
             {% for item in items %}
                 <li>
-                    Date: {{ item.date_shipped_from_inventory }}<br>Quantity: {{ item.total_quantity_by_day }}
+                    Date:
+                    {% if item.date_shipped_from_inventory %}
+                        {{ item.date_shipped_from_inventory }}
+                    {% else %}
+                        {{ item.date_received_into_inventory }}
+
+                    {% endif %}
+                    <br>Quantity: {{ item.total_quantity }}
                 </li>
             {% endfor %}
         </ul>
