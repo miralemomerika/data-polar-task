@@ -1,0 +1,131 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    flex: 1;
+    margin-left: 200px;
+    flex-grow: 1;
+}
+
+.nav-menu {
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: height 0.5s ease-out;
+    padding-top: 60px;
+}
+
+.nav-menu a {
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.nav-menu a:hover {
+    color: #f1f1f1;
+}
+
+.nav-menu .button {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+#dropdownBtn {
+    display: none; /* Hide by default */
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    color: white;
+    padding: 10px;
+    font-size: 30px;
+    border: none;
+    cursor: pointer;
+}
+
+#closeBtn {
+    color: white;
+    font-size: 30px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    display: none;
+    padding: 10px;
+}
+
+/* Footer Styles */
+footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 20px;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Show navigation items in row on tablet and larger devices */
+@media (max-width: 768px) {
+    body {
+    padding-left: 0;
+        flex-direction: column;
+    }
+
+    main {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-left: 0;
+    }
+
+    nav, footer {
+        flex: none;
+    }
+    .nav-menu {
+        width: 100%;
+        height: auto;
+    }
+    .nav-menu ul{
+        visibility: hidden;
+        height: 0;
+        overflow: hidden;
+        transition: opacity 0.5s ease-out, height 0.5s ease-out;
+    }
+    #dropdownBtn {
+        display: block;
+    }
+    .nav-menu.active ul{
+        visibility: visible;
+        height: auto;
+    }
+    .nav-menu.active #closeBtn{
+        display: block;
+    }
+}

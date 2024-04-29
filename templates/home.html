@@ -1,0 +1,17 @@
+{% extends "base/index.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="/static/css/home.css">
+{% endblock %}
+
+{% block content %}
+    {% for item in items %}
+        <div class="container">
+            <h2>Item: {{ item.item_id }}</h2>
+            <p>Quantity: {{ item.total_quantity }}</p>
+            <a href="/api/v1/inventory/item/{{ item.item_id }}">Details</a>
+        </div>
+    {% endfor %}
+{% endblock %}

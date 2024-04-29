@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Inventory{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/index.css">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    {% include 'base/navigation.html' %}
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    {% include 'base/footer.html' %}
+
+    {% block scripts %}
+        <script src="/static/js/navigation.js"></script>
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,12 @@
+<footer>
+    <p>&copy; <span id="current-year">2024</span> Inventory Dashboard</p>
+</footer>
+
+{% block scripts %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentYear = new Date().getFullYear();
+            document.getElementById('current-year').textContent = currentYear;
+        });
+    </script>
+{% endblock %}
