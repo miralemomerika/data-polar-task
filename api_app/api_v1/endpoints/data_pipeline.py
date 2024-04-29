@@ -15,8 +15,11 @@ router = APIRouter()
 async def upload_csv(file: UploadFile = File(...)):
     if file.filename.endswith('.csv'):
         data = await file.read()
-        await process_csv(data)
-        return {"status": "success", "message": "CSV processed and data stored in PostgreSQL"}
+        try:
+            await process_csv(data)
+            return {"status": "success", "message": "CSV processed and data stored in PostgreSQL"}
+        except Exception as e:
+            return {"status": "error", "message": f"An error occurred: {e}"}
     return {"status": "error", "message": "Invalid file format"}
 
 
@@ -26,8 +29,11 @@ async def trigger_data_pipeline():
     if file_path.exists() and file_path.suffix == '.csv':
         async with aiofiles.open(file_path, mode='rb') as file:
             data = await file.read()
-            await process_csv(data)
-            return {"status": "success", "message": "CSV processed and data stored in PostgreSQL"}
+            try:
+                await process_csv(data)
+                return {"status": "success", "message": "CSV processed and data stored in PostgreSQL"}
+            except Exception as e:
+                return {"status": "error", "message": f"An error occurred: {e}"}
     return {"status": "error", "message": "File does not exist or is not a CSV file."}
 
 
